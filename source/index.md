@@ -69,7 +69,7 @@ curl -XPOST https://accesskey:secret@uib-api/v2/message/send --data '{
 
 ```
 
-This endpoint retrieves sends messages.
+This endpoint sends messages. Before a message can be send, the corresponding service-account has to be registered with the unification-engine. When you register an service-account to the unification engine, you can choose a name for this connection. Then you can send messages over this connection by it name.
 
 ### HTTP Request
 
