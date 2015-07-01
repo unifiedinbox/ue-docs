@@ -64,20 +64,7 @@ curl -XPOST https://accesskey:secret@uib-api/v2/message/send --data '{
 
 ```json
 [
-  sent: 1
-  success:[  
-    {
-      "receiver": karl,
-      "messageid": "message-id1"
-    }
-  ],
-  failed: 1,
-  error: [
-    {
-      "receiver": otto,
-      "message": "error message"
-    }
-  ]
+  queued: 2
 ]
 
 ```
