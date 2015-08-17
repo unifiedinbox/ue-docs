@@ -98,7 +98,7 @@ Remember — API requires authentication!
 ## Delete user
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/user/delete -u 8481eeb9c8304ce0a5e3cb58479768f4:4cc366b8be84a072d9232b7db7329d29 --data '{}'
+curl -XPOST http://apiv2.unificationengine.com/v2/user/delete -u db953ed47b2f421dbe02682df8ae9080:1caa55d0d21e479f75402e86728cab6f --data '{"uri":"user://e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@"}
 ```
 
 > The above command returns JSON structured like this:
