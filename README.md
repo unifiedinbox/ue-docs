@@ -97,6 +97,7 @@ Need Help? Found a bug?
 --------------------
 
 Just [submit a issue](https://github.com/tripit/slate/issues) to the Slate Github if you need any help. And, of course, feel free to submit pull requests with bug fixes or changes.
+...
 
 
 Contributors
