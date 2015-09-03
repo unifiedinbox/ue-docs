@@ -68,7 +68,8 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $nav-bg;
+  //background-color: $nav-bg;
+  background-color: $lhs-bg;
   font-size: 13px;
   font-weight: bold;
 
@@ -77,20 +78,22 @@ html, body {
     display: none;
     a {
       padding-top: 0.5em;
-      padding-bottom: 0.5em;
-    }
+      padding-bottom: 0.5em;	
+    }    
   }
 
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    margin:10px auto;
+    height:52px;
   }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: $search-bg;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -105,11 +108,20 @@ html, body {
     &:before {
       position: absolute;
       top: 17px;
-      left: $nav-padding;
+      left: $nav-padding + 4;
       color: $nav-text;
       @extend %icon-search;
     }
+    
   }
+	
+
+  .search::-webkit-input-placeholder {
+       color: $placeholder_color;
+   }
+   .search::-moz-placeholder {
+       color: $placeholder_color;
+   }
 
   img+.tocify {
     margin-top: $logo-margin;
@@ -281,11 +293,29 @@ html, body {
     bottom: 0;
   }
 
-  .lang-selector {
+ 
+  a {
+
+	color:$content-link-color;
+	text-decoration:none;
+	&:-webkit-any-link {text-decoration:none}
+	&:hover {
+		text-decoration:underline;
+	}
+	
+  }
+   .lang-selector {
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
+	a {
+		&:hover {
+			text-decoration:none;
+		}
+	
+	}
   }
+
 }
 
 .lang-selector {
@@ -307,7 +337,7 @@ html, body {
     }
 
     &.active {
-      background-color: $lang-select-active-bg;
+      background-color: $lhs-bg;
       color: $lang-select-active-text;
     }
   }
@@ -340,7 +370,7 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
+    //@include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -449,6 +479,7 @@ html, body {
   p, li, dt, dd {
     line-height: 1.6;
     margin-top: 0;
+    @extend %light-font;
   }
 
   img {
@@ -456,22 +487,32 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+   // background-color: rgba(0,0,0,0.05);
+    background-color: #dbdbdb;
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
+    
   }
-
+  code.prettyprint {
+     @extend %thick-font;
+     font-weight: 800;
+     font-weight: bolder;
+     font-style: normal;
+  }
   pre>code {
     background-color: transparent;
     padding: 0;
+     @extend %light-font;
+
   }
+
 
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
+   // @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -479,12 +520,18 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
-      @include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
+     // @include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
     }
 
     &.success {
       background-color: $aside-success-bg;
-      @include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
+      // @include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
+    }
+    &.notice > code {
+	@extend %thick-font;
+	font-weight: 800;
+	font-weight: bolder;
+	font-style: normal;
     }
   }
 
@@ -554,13 +601,37 @@ html, body {
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
+      //border-radius: 5px;
       padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      color: #fff;
+      //border-top: 1px solid #000;
+      //border-bottom: 1px solid #404040;
+      @extend %light-font;
     }
+    code {background:rgba(0,0,0,0.05);}
   }
+  
+}
+.highlight .nt {color:$code-color-orange;}
+.highlight {
+	.m,
+	.mf,
+	.mh,
+	.mi,
+	.il,
+	.mo,
+	.mb,
+	.mx,
+	.s,
+	.sb,
+	.sc,
+	.sd,
+	.s2,
+	.sh,
+	.sx,
+	.s1 {
+		color:$code-color-green;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -607,6 +678,7 @@ html, body {
 
   .page-wrapper .lang-selector {
     display: none;
+    a:hover {text-decoration:none;}
   }
 
   %right-col {

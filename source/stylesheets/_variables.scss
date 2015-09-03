@@ -24,33 +24,46 @@ under the License.
 // BACKGROUND COLORS
 ////////////////////
 $nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
+//$examples-bg: #393939;
+	$examples-bg: #525252;
+//$code-bg: #292929;
+	$code-bg: #424242;
+//$code-annotation-bg: #1c1c1c;
+$code-annotation-bg: #323232;
 $nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+//$nav-active-bg: #2467af;
+$nav-active-bg: #01579b;
 $lang-select-border: #000;
-$lang-select-bg: #222;
+//$lang-select-bg: #222;
+	$lang-select-bg: #323232;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
+//$main-bg: #eaf2f6;
+$main-bg: #fff;
+//$aside-notice-bg: #8fbcd4;
+$aside-notice-bg: #b3e5fc;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
+$search-bg:#323232;
+$lhs-bg:#525252;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
+//$main-text: #333; // main content text color
+$main-text: #000000; // main content text color
 $nav-text: #fff;
 $nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
+$placeholder_color: #bdbdbd; //color for search input placeholder
+$code-color-green: #8cbe46;
+$code-color-orange: #ff931e;
+$content-link-color:#00b0ff;
 
-
-// SIZES
+// SIZES	
 ////////////////////
 $nav-width: 230px; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
@@ -67,8 +80,39 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
+ 
+$font_helvetica: Helvetica Neue LT Pro;
+$font_helvetica_light: Helvetica Neue Ligt;
+$ocr-b-10-b: ocr-b-10-b;
+
+//URLS
+$url_helvetica: url(../fonts/HelveticaNeueLTPro-Md.otf);
+$url_helvetica_light: url(../fonts/HelveticaNeueLTPro-Lt.otf);
+$ocr-b-10-b_url: url(../fonts/ocr-b-10-bt.ttf);
+
+@font-face {
+	font-family: $font_helvetica;
+	src: $url_helvetica;
+	src: $url_helvetica format('opentype');
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: $font_helvetica_light;
+	src: $url_helvetica_light;
+	src: $url_helvetica_light format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: $ocr-b-10-b;
+	src: $ocr-b-10-b_url;
+	src: $ocr-b-10-b_url format('truetype');	 
+}
+
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: " Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
   font-size: 13px;
 }
 
@@ -82,7 +126,14 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
   font-size: 12px;
   line-height: 1.5;
 }
+%light-font {
+	font-family:"Helvetica Neue Ligt","Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 
+}
+%thick-font {
+	font-family: "ocr-b-10-b","Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+	
+}
 
 // OTHER
 ////////////////////
