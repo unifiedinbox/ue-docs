@@ -18,7 +18,7 @@ search: true
 
 Welcome to the UnificationEngine™ API! You can use our API to access UnificationEngine™ API endpoints, which can communicate with various connectors. You can even create a connector and link it with UnificationEngine™ in the developer portal.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can view code examples in the dark area to the right.
 
 
 # Authentication
@@ -55,9 +55,11 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/create -u 8481eeb9c8304ce
 
 ```json
 [
-  status: 200,
-  info: OK,
-  uri:user://e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@
+  {
+   "status": 200,
+   "info": "OK",
+   "uri":"user://e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@"
+  }
 ]
 
 ```
@@ -105,8 +107,10 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/delete -u db953ed47b2f421
 
 ```json
 [
-  status: 200,
-  info: OK
+  {
+   "status": 200,
+   "info": "OK"
+  }
 ]
 
 ```
@@ -157,9 +161,11 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/list -u 8481eeb9c8304ce0a
 
 ```json
 [
-  status: 200,
-  info: OK,
-  users:[{"uri":"user://e9759590-54ef-4cd3-a01c-cb2241ddd811@"}]
+ {
+   "status": 200,
+   "info": "OK",
+   "users":[{"uri":"user://e9759590-54ef-4cd3-a01c-cb2241ddd811@"}]
+ }
 ]
 
 ```
@@ -208,9 +214,11 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/test -u e9759590-54
 
 ```json
 [
-  status: 200,
-  info: OK,
-  uri:{"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}
+  
+  { 
+   "status": 200,
+   "info": "OK"
+  }
 ]
 
 ```
@@ -234,7 +242,6 @@ Parameter | Default | Description
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
-uri,omitempty | json    | [{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}]
 
 
 ### Error
@@ -251,108 +258,6 @@ Remember — API requires authentication!
 
 
 
-## Connection info
-
-```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  status: 200,
-  info: OK,
-  connectors:[{"connector":"","displayName":"","loginName":"","userImage":""}]
-]
-
-```
-
-This endpoint lists connection info. 
-
-### HTTP Request
-
-`POST https://accesskey:secret@uib-api/v2/connection/info`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
- uri| null | 	{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}
-
-### Response
-
-
-          |         |            |
---------- | ------- | -----------
-status| integer | 200
-info  | string  | OK
-connectors| json| [{"connector":"","displayName":"","loginName":"","userImage":""}]
-
-### Error
-
-
-Error code        |  Meaning 
---------- | ------- | -----------
-411| Connection not found
-
-<aside class="success">
-Remember — API requires authentication!
-</aside>
-
-
-
-
-## Connection refresh
-
-```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  status: 200,
-  info: OK
-]
-
-```
-
-This endpoint refreshes connection. 
-
-### HTTP Request
-
-`POST https://accesskey:secret@uib-api/v2/connection/refresh`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
- uri| null | 	{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}
-
-### Response
-
-
-          |         |            |
---------- | ------- | -----------
-status| integer | 200
-info  | string  | OK
-
-
-### Error
-
-
-Error code        |  Meaning 
---------- | ------- | -----------
-411| Connection not found
-
-
-<aside class="success">
-Remember — API requires authentication!
-</aside>
-
-
 
 
 ## Add connection
@@ -365,8 +270,10 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54e
 
 ```json
 [
-  status: 200,
-  info: OK
+ {
+   "status": 200,
+   "info": "OK"
+  }
 ]
 
 ```
@@ -406,6 +313,111 @@ Remember — API requires authentication!
 </aside>
 
 
+## Connection info
+
+```shell
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{\"uri\":\"unified://facebook\"}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+ {
+  "status": 200,
+  "info": "OK",
+  "connectors":[{"connector":"","displayName":"","loginName":"","userImage":""}]
+  }
+]
+
+```
+
+This endpoint lists connection info. 
+
+### HTTP Request
+
+`POST https://accesskey:secret@uib-api/v2/connection/info`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | 	{\"uri\":\"unified://facebook\"}
+
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+connectors| json| [{"connector":"","displayName":"","loginName":"","userImage":""}]
+
+### Error
+
+
+Error code        |  Meaning 
+--------- | ------- | -----------
+411| Connection not found
+
+<aside class="success">
+Remember — API requires authentication!
+</aside>
+
+
+
+
+## Connection refresh
+
+```shell
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{\"uri\":\"unified://facebook\"}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+   "status": 200,
+   "info": "OK"
+  }
+]
+
+```
+
+This endpoint refreshes connection. 
+
+### HTTP Request
+
+`POST https://accesskey:secret@uib-api/v2/connection/refresh`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | 	{\"uri\":\"unified://facebook\"}
+
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+
+
+### Error
+
+
+Error code        |  Meaning 
+--------- | ------- | -----------
+411| Connection not found
+
+
+<aside class="success">
+Remember — API requires authentication!
+</aside>
+
 
 ## Remove connection
 
@@ -417,8 +429,10 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/remove -u e9759590-
 
 ```json
 [
-  status: 200,
-  info: OK
+ {
+  "status": 200,
+  "info": "OK"
+ }
 ]
 
 ```
@@ -463,16 +477,18 @@ Remember — API requires authentication!
 ## List connection
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/list -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{"name":"facebook"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/list -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  status: 200,
-  info: OK,
-  connections:[{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}]
+  {
+   "status": 200,
+   "info": "OK",
+   "connections":[{"uri":"facebook://CAADJarduu00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}]
+  }
 ]
 
 ```
@@ -521,9 +537,11 @@ curl -XPOST http://apiv2.unificationengine.com/v2/address/list -u e9759590-54ef-
 
 ```json
 [
-  status: 200,
-  info: OK,
-  addresses:[{"connector":"","name":"","address":"","userImage":"","type":""}]
+  {
+   "status": 200,
+   "info": "OK",
+   "addresses":[{"connector":"","name":"","address":"","userImage":"","type":""}]
+  }
 ]
 
 ```
@@ -566,15 +584,17 @@ Remember — API requires authentication!
 ## Send message
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/message/send -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data '{"message":"[{"uri":"","mid":"","timestamp":"","sender":"","returnPath":"","receivers":"","subject":"","date":"","userAgent":"","headers":"","parts":""}]"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/message/send -u e9759590-54ef-4cd3-a01c-cb2241ddd811:1aee1a25-e0c4-4036-a8fd-4d41adc8610a@ --data "{ \"message\": { \"receivers\": [{\"name\": \"page\", \"address\": \"117668485005346\" , \"Connector\": \"facebook\" }],\"sender\": {\"address\": \"manu@amt.in\" , \"Connector\": \"facebook\" },\"uri\":\"unified://facebook\",\"subject\":\"test sub 145\",\"parts\": [{\"part\": \"0\", \"contentType\": \"text\/plain\" , \"size\": 31,\"type\": \"body\", \"data\":\"{\u0022image_url\u0022:\u0022http://amt.in/img/amt_logo_big.png\u0022,\u0022preview_title\u0022:\u0022title 1\u0022,\u0022preview_description\u0022:\u0022description 1\u0022,\u0022content\u0022:\u0022content 11\u0022}\"}]},\"uri\":\"unified://facebook\"}"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  status: 200,
-  info: OK
+  {
+   "status": 200,
+   "info": "OK"
+  }
 ]
 
 ```
@@ -589,7 +609,7 @@ This endpoint sends message.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-message|null|[{"uri":"","mid":"","timestamp":"","sender":"","returnPath,omitempty":"","receivers":"","subject,omitempty":"","date":"","userAgent":"","headers":"","parts":""}]
+message|null|[{"uri":"","mid":"","timestamp":"","returnPath,omitempty":"""date":"","userAgent":"","headers":"", \"receivers\": [{\"name\": \"page\", \"address\": \"117668485005346\" , \"Connector\": \"facebook\" }],\"sender\": {\"address\": \"manu@amt.in\" , \"Connector\": \"facebook\" },\"uri\":\"unified://facebook\",\"subject\":\"test sub 145\",\"parts\": [{\"part\": \"0\", \"contentType\": \"text\/plain\" , \"size\": 31,\"type\": \"body\", \"data\":\"{\u0022image_url\u0022:\u0022http://amt.in/img/amt_logo_big.png\u0022,\u0022preview_title\u0022:\u0022title 1\u0022,\u0022preview_description\u0022:\u0022description 1\u0022,\u0022content\u0022:\u0022content 11\u0022}\"}]}]
 
 ### Response
 
@@ -613,48 +633,3 @@ Error code        |  Meaning
 <aside class="success">
 Remember — API requires authentication!
 </aside>
-
-
-
-## Send message
-
-```shell
-curl -XPOST https://accesskey:secret@uib-api/v2/message/send --data '{
-   "message": {
-   "receivers": [
-   {"address":"karl","connector":"facebookaccount1"},
-   {"address":"otto","connector":"twitteraccount2"}
-   ],
-   "parts": [
-   {"id":"0","ContentType":"text/plain","Type":"body","data":"My test message",size:"15"}
-   ]
-   }
-  }'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  queued: 2
-]
-
-```
-
-This endpoint sends messages. Before a message can be send, the corresponding service-account has to be registered with the unification-engine. When you register an service-account to the unification engine, you can choose a name for this connection. Then you can send messages over this connection by it name.
-
-### HTTP Request
-
-`POST https://accesskey:secret@uib-api/v2/message/send`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-message | null | example json message {"receivers": [{"address":"karl","connector":"facebookaccount1"},{"address":"otto","connector":"twitteraccount2"}],"parts": [{"id":"0","ContentType":"text/plain","Type":"body","data":"My test message",size:"15"}]}}```
-
-
-<aside class="success">
-Remember — API requires authentication!
-</aside>
-

@@ -7,14 +7,21 @@ The Kittn API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+0    | "" -- only used internally
+410  | No receivers specified
+411  | Connection not found
+412  | Bad receivers specified
+413  | Connector not found
+414  | User not found
+415  | Feature not supported by connector
+416  | Connector auth failed
+417  | Connector returned error
+418  | Connection expired
+500  | provider Offline
+501  | Request URI is not valid
+502  | JSON is not valid
+503  | JSON does not contain needed fields
+504  | Connection Error
+505  | Request contains errors
+506  | Not Implemented
+1000 | Internal Error
