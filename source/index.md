@@ -63,7 +63,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/create -u 8481eeb9c8304ce
 
 ```
 
-This endpoint creates a user. 
+This endpoint will create a user for the app, the developer has created in developer portal. This user is created for adding the connections like facebook, twitter etc.
+The user should be created with the key and secret of the app. On successful creation of a user, an access key and secret for the user will be returned as response, which is required for all further api calls.
 
 ### HTTP Request
 
