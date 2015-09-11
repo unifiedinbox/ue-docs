@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='http://dev.unifiedinbox.com/register'>Sign Up for a Developer Key</a>
+  - <a href='http://developer.unificationengine.com/register'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
