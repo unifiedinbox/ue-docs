@@ -7,7 +7,6 @@ The Kittn API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-0    | "" -- only used internally
 410  | No receivers specified
 411  | Connection not found
 412  | Bad receivers specified
