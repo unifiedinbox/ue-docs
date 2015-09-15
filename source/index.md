@@ -115,7 +115,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/delete -u 8481eeb9c8304ce
 
 ```
 
-This endpoint deletes the user. 
+This endpoint will delete the user for the app, specified in the uri parameter.
+This api call should be authenticated with the key and secret of the app.
 
 ### HTTP Request
 
@@ -170,7 +171,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/user/list -u 8481eeb9c8304ce0a
 
 ```
 
-This endpoint lists users. 
+This endpoint will list all the users created for the app.
+This api call should be authenticated with the key and secret of the app.
 
 ### HTTP Request
 
@@ -204,6 +206,68 @@ Remember — API requires authentication!
 
 
 
+## Add connection
+
+```shell
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib","name":"facebook"}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+ {
+   "status": 200,
+   "info": "OK"
+  }
+
+
+```
+
+This endpoint will add a connection to the user of the app.
+A connection is an authentication for a connector.
+A connector, which has to be added in the developer portal is a bridge between the service and the app.
+A service can be anything like facebook, twitter etc.
+The uri parameter part for this api call consists of three part
+1. Connector identifier (schema of uri)
+2. Service accesstoken
+3. Service domain name
+The "name" parameter is used to identify the connection for the user, which is required for the further api calls using this connection.
+Once a connection is successfully added, it can be identified by using the "name" as "unified://name".
+This api call should be authenticated with the key and secret of the user.
+
+### HTTP Request
+
+`POST https://accesskey:secret@uib-api/v2/connection/add`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | 	{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}
+ name|null|facebook
+
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+
+
+### Error
+
+
+Error code        |  Meaning 
+--------- | ------- | -----------
+1000| Internal Error 
+413| Connector not found
+
+<aside class="success">
+Remember — API requires authentication!
+</aside>
+
 ## Test connection
 
 ```shell
@@ -223,7 +287,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/test -u e9759590-54
 
 ```
 
-This endpoint tests connection. 
+This endpoint will validate the accesstoken of the service.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -258,61 +323,6 @@ Remember — API requires authentication!
 
 
 
-
-
-## Add connection
-
-```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib","name":"facebook"}'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-
- {
-   "status": 200,
-   "info": "OK"
-  }
-
-
-```
-
-This endpoint add connection. 
-
-### HTTP Request
-
-`POST https://accesskey:secret@uib-api/v2/connection/add`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
- uri| null | 	{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.uib"}
- name|null|facebook
-
-### Response
-
-
-          |         |            |
---------- | ------- | -----------
-status| integer | 200
-info  | string  | OK
-
-
-### Error
-
-
-Error code        |  Meaning 
---------- | ------- | -----------
-1000| Internal Error 
-413| Connector not found
-
-<aside class="success">
-Remember — API requires authentication!
-</aside>
-
-
 ## Connection info
 
 ```shell
@@ -332,7 +342,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54
 
 ```
 
-This endpoint lists connection info. 
+This endpoint will list connectors info.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -385,7 +396,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590
 
 ```
 
-This endpoint refreshes connection. 
+In some services the accesstoken has short lifespan and another api has to be call to get long lifespan accesstoken, for example facebook first gives an accesstoken with short lifespan. Once we refresh the api accesstoken we will get another accesstoken with long life.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -437,7 +449,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/remove -u e9759590-
 
 ```
 
-This endpoint remove connection. 
+This endpoint will remove the connection of a user.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -493,7 +506,8 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/list -u e9759590-54
 
 ```
 
-This endpoint lists connection. 
+This endpoint will list all the connections of the user.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -546,7 +560,7 @@ curl -XPOST http://apiv2.unificationengine.com/v2/address/list -u e9759590-54ef-
 
 ```
 
-This endpoint lists address. 
+This endpoint will list the address.
 
 ### HTTP Request
 
@@ -599,7 +613,7 @@ curl -XPOST http://apiv2.unificationengine.com/v2/message/send -u e9759590-54ef-
 
 ```
 
-This endpoint sends message. 
+This endpoint will send messages.
 
 ### HTTP Request
 
