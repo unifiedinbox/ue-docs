@@ -229,7 +229,7 @@ A connection is an authentication for a connector.
 A connector, which has to be added in the developer portal is a bridge between the service and the app.
 A service can be anything like facebook, twitter etc.
 The uri parameter part for this api call consists of three part
-1. Connector identifier (schema of uri)
+1. Connector identifier (scheme of uri)
 2. Service accesstoken
 3. Service domain name
 The "name" parameter is used to identify the connection for the user, which is required for the further api calls using this connection.
@@ -389,8 +389,9 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590
 ```json
 
   {
-   "status": 200,
-   "info": "OK"
+   "status": 201,
+   "info": "OK",
+   "uri":"faceboo://CAADJarduul3lZCP2s@facebook.com"
   }
 
 
@@ -416,6 +417,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
+uri  | string  | faceboo://CAADJarduul3lZCP2s@facebook.com
 
 
 ### Error
@@ -541,10 +543,11 @@ Remember — API requires authentication!
 
 
 
-## List address
+
+## Send message
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/address/list -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"name":"facebook"}'
+curl -XPOST http://192.168.2.203:8001/v2/message/send  --data "{ \"message\": { \"receivers\": [{\"name\": \"Me\", \"address\": \"test.test\" , \"Connector\": \"facebook\" }],\"subject\":\"test\",\"parts\": [{\"id\": \"0\", \"contentType\": \"binary\" , \"size\": 2211,\"type\": \"image_link\", \"name\":\"file name\",\"data\":\"http://www.hd-wallpapersdownload.com/upload/bulk-upload/desktop-pictures-of-cute-kittens-and-cats-wallpaper.jpg\",\"sort\":1},{\"id\": \"1\",\"contentType\": \"binary\", \"data\":\"test\" ,\"size\": 100,\"type\": \"body\",\"sort\":0}, {\"id\": \"2\",\"contentType\": \"binary\", \"data\":\"description2\" ,\"size\": 100,\"type\": \"link_description\",\"sort\":2},{\"id\": \"3\",\"contentType\": \"binary\", \"data\":\"title2\" ,\"size\": 100,\"type\": \"link_title\",\"sort\":3},{\"id\": \"4\",\"contentType\": \"binary\", \"data\":\"http://www.amt.in\" ,\"size\": 100,\"type\": \"link\",\"sort\":4}]}}" -u f68a8efd-dc55-405d-b1f0-b4433477d52a:43093a7d-f563-43a7-8e46-56791cb1b92f
 ```
 
 > The above command returns JSON structured like this:
@@ -554,66 +557,15 @@ curl -XPOST http://apiv2.unificationengine.com/v2/address/list -u e9759590-54ef-
   {
    "status": 200,
    "info": "OK",
-   "addresses":[{"connector":"","name":"","address":"","userImage":"","type":""}]
+   "URIs" :"twitter://twitter.com/648738109689982977"
   }
 
 
 ```
 
-This endpoint will list the address.
-
-### HTTP Request
-
-`POST https://accesskey:secret@uib-api/v2/address/list`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-uri|null|
-
-### Response
-
-
-          |         |            |
---------- | ------- | -----------
-status| integer | 200
-info  | string  | OK
-addresses|json |[{"connector":"","name,omitempty":"","address":"","userImage,omitempty":"","type,omitempty":""]}
-
-
-### Error
-
-
-Error code        |  Meaning 
---------- | ------- | -----------
-411| Connection not found
-
-<aside class="success">
-Remember — API requires authentication!
-</aside>
-
-
-
-## Send message
-
-```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/message/send -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data "{ \"message\": { \"receivers\": [{\"name\": \"page\", \"address\": \"117668485005346\" , \"Connector\": \"facebook\" }],\"sender\": {\"address\": \"manu@amt.in\" , \"Connector\": \"facebook\" },\"uri\":\"unified://facebook\",\"subject\":\"test sub 145\",\"parts\": [{\"part\": \"0\", \"contentType\": \"text\/plain\" , \"size\": 31,\"type\": \"body\", \"data\":\"{\u0022image_url\u0022:\u0022http://amt.in/img/amt_logo_big.png\u0022,\u0022preview_title\u0022:\u0022title 1\u0022,\u0022preview_description\u0022:\u0022description 1\u0022,\u0022content\u0022:\u0022content 11\u0022}\"}]},\"uri\":\"unified://facebook\"}"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-
-  {
-   "status": 200,
-   "info": "OK"
-  }
-
-
-```
-
-This endpoint will send messages.
+This endpoint will send messages to services like twitter, facebook etc.
+We can send messages to multiple services using single api call. The contentType in the 'part' parameter, should be one of the capabilities chosen for the connector.
+This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
 
@@ -623,7 +575,7 @@ This endpoint will send messages.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-message|null|[{"uri":"","mid":"","timestamp":"","returnPath,omitempty":"""date":"","userAgent":"","headers":"", \"receivers\": [{\"name\": \"page\", \"address\": \"117668485005346\" , \"Connector\": \"facebook\" }],\"sender\": {\"address\": \"manu@amt.in\" , \"Connector\": \"facebook\" },\"uri\":\"unified://facebook\",\"subject\":\"test sub 145\",\"parts\": [{\"part\": \"0\", \"contentType\": \"text\/plain\" , \"size\": 31,\"type\": \"body\", \"data\":\"{\u0022image_url\u0022:\u0022http://amt.in/img/amt_logo_big.png\u0022,\u0022preview_title\u0022:\u0022title 1\u0022,\u0022preview_description\u0022:\u0022description 1\u0022,\u0022content\u0022:\u0022content 11\u0022}\"}]}]
+message|null|{ \"receivers\": [{\"name\": \"Me\", \"address\": \"test.test\" , \"Connector\": \"facebook\" }],\"subject\":\"test\",\"parts\": [{\"id\": \"0\", \"contentType\": \"binary\" , \"size\": 2211,\"type\": \"image_link\", \"name\":\"file name\",\"data\":\"http://www.hd-wallpapersdownload.com/upload/bulk-upload/desktop-pictures-of-cute-kittens-and-cats-wallpaper.jpg\",\"sort\":1},{\"id\": \"1\",\"contentType\": \"binary\", \"data\":\"test\" ,\"size\": 100,\"type\": \"body\",\"sort\":0}, {\"id\": \"2\",\"contentType\": \"binary\", \"data\":\"description2\" ,\"size\": 100,\"type\": \"link_description\",\"sort\":2},{\"id\": \"3\",\"contentType\": \"binary\", \"data\":\"title2\" ,\"size\": 100,\"type\": \"link_title\",\"sort\":3},{\"id\": \"4\",\"contentType\": \"binary\", \"data\":\"http://www.amt.in\" ,\"size\": 100,\"type\": \"link\",\"sort\":4}]}
 
 ### Response
 
@@ -632,6 +584,7 @@ message|null|[{"uri":"","mid":"","timestamp":"","returnPath,omitempty":"""date":
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
+URIs |array|twitter://twitter.com/648738109689982977
 
 
 ### Error
@@ -646,4 +599,239 @@ Error code        |  Meaning
 
 <aside class="success">
 Remember — API requires authentication!
+</aside>
+
+# Connector
+
+## Connectors
+
+Welcome to the Connector! 
+A connector, which has to be added in the developer portal is a bridge between the service and the app.
+A service can be anything like facebook, twitter etc.
+
+### Steps to add a connector to an app in the developer portal.
+Choose a connector from the list available and key in a connector key and secret and click submit.
+
+### A connector contains
+### 1. Endpoint
+	 The endpoint is where the Unification Engine can connect to call the connector.
+### 2. Capabilities
+	A connector can have the following capabilities:
+	sending, receiving, folders, push, delete, contacts, flags, stats, binary, image, video, html and plan.
+### 3. Timeout (ms)
+	The timeout is the time in milliseconds, after which the Unified Engine considers the api call have failed.
+### 4. Scheme
+	Schemes specifying a concrete syntax and associated protocols define each URI. Scheme should contain only alphabets and numerals without any spaces.
+	The format of URI is "scheme:[//[user:password@]domain[:port]][/]path".
+	You can see an example for URI on the right side.
+	
+```shell
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data'{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.com","name":"facebook"}'
+```
+
+### 5. Name
+	The name of the connector, which should be unique. 
+### 6. Accesskey and Secret
+	Client id(Access key) and Client secret used for authenticating the api calls to service (facebook, twitter etc). Every call to connector will have a  parameter, apiToken=Accesskey:Secret.
+
+## Authentication
+
+	Every call to connector will have an http basic auth using the connector accesskey and secret.
+
+
+
+## Test connection
+
+This endpoint will validate the accesstoken of the service of a user.
+The test connection will be invoked upon adding a connection for a user in UE. Only upon successfull response, a connection will be added in UE. 
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+ {
+   "status": 200,
+   "info": "OK",
+   "uri": "twitter://4GR3YESZVCBMTV0DHXz7nRJbosQ5IH1m0QOk7FUh0:S2vU2YVkmh3NDBOPvHn7sKDrKAkY@twitter.com"
+  }
+
+
+```
+
+### Query Parameters
+
+The uri parameter part for this api call consists of three part
+1. Connector identifier (scheme of uri)
+2. Service accesstoken
+3. Service domain name
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | 	twitter://4GR3YESZVCBMTV0DHXz7nRJbosQ5IH1m0QOk7FUh0:S2vU2YVkmh3NDBOPvHn7sKDrKAkY@twitter.com
+ apiToken|null|872d8f492b3c0613a54adfff441ad2461f8c42fed1b45af1a390b827ec00587d58
+
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+uri|string|twitter://4GR3YESZVCBMTV0DHXz7nRJbosQ5IH1m0QOk7FUh0:S2vU2YVkmh3NDBOPvHn7sKDrKAkY@twitter.com
+
+
+### Error
+
+
+Error code        |  Meaning 
+--------- | ------- | -----------
+503| Invalid access credentials
+
+<aside class="success">
+Remember — Protect the API with authentication!
+</aside>
+
+
+
+## Connection info
+
+This endpoint will list connector's info including the display name and profile image of the service.
+
+> The above command returns JSON structured like this:
+
+```json
+
+ {
+  "status": 200,
+  "info": "OK",
+  "connectors":[{"displayName":"test user","loginName":"test_user","userImage":"http://pbs.twimg.com/profile_images/378800000658702791/68493e28324e71981790c04d5705cbb4_normal.png"}]
+  }
+
+
+```
+
+### Query Parameters
+
+The uri parameter part for this api call consists of three part
+1. Connector identifier (scheme of uri)
+2. Service accesstoken
+3. Service domain name
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | 	twitter://4GR3YESZVCBMTV0DHXz7nRJbosQ5IH1m0QOk7FUh0:S2vU2YVkmh3NDBOPvHn7sKDrKAkY@twitter.com
+ apiToken|null|872d8f492b3c0613a54adfff441ad2461f8c42fed1b45af1a390b827ec00587d58
+
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+connectors| json| [{"displayName":"test user","loginName":"test_user","userImage":"http://pbs.twimg.com/profile_images/378800000658702791/68493e28324e71981790c04d5705cbb4_normal.png"}]
+
+
+<aside class="success">
+Remember — Protect the API with authentication!
+</aside>
+
+
+
+
+
+## Connection refresh
+
+In some services the accesstoken has short lifespan and another api has to be called to get an accesstoken withlong lifespan. for example facebook first gives an accesstoken with short lifespan. Once we refresh the api accesstoken we will get another accesstoken with long life.
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+  {
+   "status": 200,
+   "info": "OK"
+   "uri":"facebook://CAADJarduu51GPsRUxuTYZD@facebook.com"
+  }
+
+
+```
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+ uri| null | facebook://CAwAZDZD@facebook.com
+ apiToken null | d857ea58f8088a5e8a9cdfc658bce8be2275847
+
+### Response
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+uri| null | facebook://CAADJarduu51GPsRUxuTYZD@facebook.com
+
+
+### Error
+
+
+status| Error code        |  Meaning 
+--------- | ------- | -----------
+status|503| Invalid access credentials 
+
+<aside class="success">
+Remember — Protect the API with authentication!
+</aside>
+
+
+
+## Send message
+
+This endpoint will send messages to services like twitter, facebook etc.
+We can send messages to multiple services using single api call. The contentType in the 'part' parameter, should be one of the capabilities chosen for the connector.
+
+> The above command returns JSON structured like this:
+
+```json
+
+  {
+   "status": 200,
+   "info": "OK"
+   "uri":648738109689982977
+
+  }
+
+
+```
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+message|null|uri: '', mid: '', timestamp: 0,sender: { connector: '', address: '' },returnPath: { connector: '', address: '' },receivers: [ {\"name\": \"Me\", \"address\": \"test.xyz" , \"Connector\": \"facebook\" }],subject: 'test',date: 0,userAgent: '',headers: null, parts: [ {\"id\": \"0\", \"contentType\": \"binary\" , \"size\": 2211,\"type\": \"image_link\", \"name\":\"file name\",\"data\":\"http://www.hd-wallpapersdownload.com/upload/bulk-upload/desktop-pictures-of-cute-kittens-and-cats-wallpaper.jpg\",\"sort\":1} ]"
+uri|null|twitter://4GR3YESZVCBMTV0DHXz7nRJbosQ5IH1m0QOk7FUh0:S2vU2YVkmh3NDBOPvHn7sKDrKAkY@twitter.com
+apiToken|null|872d8f492b3c0613a54adfff441ad2461f8c42fed1b45af1a390b827ec00587d58
+### Response
+
+
+          |         |            |
+--------- | ------- | -----------
+status| integer | 200
+info  | string  | OK
+uri | string | 648738109689982977
+
+### Error
+
+
+status|Error code        |  Meaning 
+--------- | ------- | -----------
+status| 500|
+error|error message|
+
+
+<aside class="success">
+Remember — Protect the API with authentication!
 </aside>
