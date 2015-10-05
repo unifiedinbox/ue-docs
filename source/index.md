@@ -389,7 +389,7 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590
 ```json
 
   {
-   "status": 201,
+   "status": 200,
    "info": "OK",
    "uri":"faceboo://CAADJarduul3lZCP2s@facebook.com"
   }
@@ -610,7 +610,7 @@ A connector, which has to be added in the developer portal is a bridge between t
 A service can be anything like facebook, twitter etc.
 
 ### Steps to add a connector to an app in the developer portal.
-Choose a connector from the list available and key in a connector key and secret and click submit.
+Choose a connector from the list available and key in a connector key and secret and click submit. If your app does not have any key and secret, just key in them as "no_key" and "no_secret" respectively.
 
 ### A connector contains
 ### 1. Endpoint
