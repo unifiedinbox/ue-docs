@@ -32,7 +32,7 @@ curl -H "Content-Type: application/json" --data "{}" -k https://yourapikey:youra
 
 > Make sure to replace `yourapikey:yourapisecret` with your API key and Secret.
 
-UnificationEngine™ uses API keys to allow access to the API. You can register a new UnificationEngine™ API key at our [developer portal](http://dev.unifiedinbox.com).
+UnificationEngine™ uses API keys to allow access to the API. You can register a new UnificationEngine™ API key at our [developer portal](http://developer.unificationengine.com).
 
 UnificationEngine™ expects for the API key and Secret to be included in all API requests to the server that looks like the following:
 
