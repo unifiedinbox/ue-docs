@@ -209,7 +209,7 @@ Remember — API requires authentication!
 ## Add connection
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.com","name":"facebook"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/add -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.com","name":"facebook"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -271,7 +271,7 @@ Remember — API requires authentication!
 ## Test connection
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/test -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.com"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/test -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{"uri":"facebook://CAADJsdsdds00BAAPX5siAhzZCUZBOGD2pFJngc2wGDb7RRyUzvYVe5EAT5fUvZAmB4OYpmcPPiHzsJJ8zLUYTgGhjBKOOsa0wj5kTBXWXWKOxrCrGp4uLL48CkkMNjmmTPlEirOOwSlKiX4VV2yfmoRgDZBQ9MsFC5yZC4xDL9YrdedTZBQpFN2@facebook.com"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -326,7 +326,7 @@ Remember — API requires authentication!
 ## Connection info
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{\"uri\":\"unified://facebook\"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{\"uri\":\"unified://facebook\"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -381,7 +381,7 @@ Remember — API requires authentication!
 ## Connection refresh
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{\"uri\":\"unified://facebook\"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/refresh -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{\"uri\":\"unified://facebook\"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -436,7 +436,7 @@ Remember — API requires authentication!
 ## Remove connection
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/remove -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{"name":"facebook"}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/remove -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{"name":"facebook"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -492,7 +492,7 @@ Remember — API requires authentication!
 ## List connection
 
 ```shell
-curl -XPOST http://apiv2.unificationengine.com/v2/connection/list -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b@ --data '{}'
+curl -XPOST http://apiv2.unificationengine.com/v2/connection/list -u e9759590-54ef-4cd3-a01c-cb2241ddd812:1aee1a25-e0c4-4036-a8fd-4d41adc8611b --data '{}'
 ```
 
 > The above command returns JSON structured like this:
