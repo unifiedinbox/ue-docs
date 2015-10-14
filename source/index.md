@@ -336,7 +336,7 @@ curl -XPOST http://apiv2.unificationengine.com/v2/connection/info -u e9759590-54
  {
   "status": 200,
   "info": "OK",
-  "connectors":[{"connector":"","displayName":"","loginName":"","userImage":""}]
+  "connections":[{"connector":"","displayName":"","loginName":"","userImage":""}]
   }
 
 
@@ -362,7 +362,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
-connectors| json| [{"connector":"","displayName":"","loginName":"","userImage":""}]
+connections| json| [{"connector":"","displayName":"","loginName":"","userImage":""}]
 
 ### Error
 
@@ -557,7 +557,7 @@ curl -XPOST http://192.168.2.203:8001/v2/message/send  --data "{ \"message\": { 
   {
    "status": 200,
    "info": "OK",
-   "URIs" :"twitter://twitter.com/648738109689982977"
+   "URIs" :"facebook://facebook.com/648738109689982977"
   }
 
 
@@ -584,7 +584,7 @@ message|null|{ \"receivers\": [{\"name\": \"Me\", \"address\": \"test.test\" , \
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
-URIs |array|twitter://twitter.com/648738109689982977
+URIs |array|facebook://facebook.com/648738109689982977
 
 
 ### Error
