@@ -64,7 +64,8 @@ curl -XPOST https://apiv2.unificationengine.com/v2/user/create -u 8481eeb9c8304c
 ```
 
 This endpoint will create a user for the app, the developer has created in developer portal. This user is created for adding the connections like facebook, twitter etc.
-The user should be created with the key and secret of the app. On successful creation of a user, an access key and secret for the user will be returned as response, which is required for all further api calls.
+The user should be created with the key and secret of the app. On successful creation of a user, a uri containing the access key and the secret for the user will be returned as response, which is required for all further api calls.
+The uri will be in the format "user://access_key:secret@".
 
 ### HTTP Request
 
@@ -336,7 +337,7 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/info -u e9759590-5
  {
   "status": 200,
   "info": "OK",
-  "connections":[{"connector":"","displayName":"","loginName":"","userImage":""}]
+  "connections":[{"connector":"","displayName":"Test User","loginName":"test_user","userImage":"https://scontent.xx.fbcdn.net/hprofile-xpa1/v/t1.0-1/p50x50/12115793_446283435581473_4214911104650919033_n.jpg?oh=0a7f3f50972f82a14828393b6b893a31&oe=56F0A755"}]
   }
 
 
@@ -362,7 +363,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 status| integer | 200
 info  | string  | OK
-connections| json| [{"connector":"","displayName":"","loginName":"","userImage":""}]
+connections| json| [{"connector":"","displayName":"Test User","loginName":"test_user","userImage":"https://scontent.xx.fbcdn.net/hprofile-xpa1/v/t1.0-1/p50x50/12115793_446283435581473_4214911104650919033_n.jpg?oh=0a7f3f50972f82a14828393b6b893a31&oe=56F0A755"}]
 
 ### Error
 
