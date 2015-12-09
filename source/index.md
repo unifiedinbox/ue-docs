@@ -16,7 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to the UnificationEngine™ API! You can use our API to access UnificationEngine™ API endpoints, which can communicate with various connectors. You can even create a connector and link it with UnificationEngine™ in the developer portal.
+Welcome to the UnificationEngine™ API! You can use our API to access UnificationEngine™ API endpoints, which can communicate with various connectors, such as Facebook, Twitter, LinkedIn, Xing, Weibo and more. You can even create your own connector and link it with UnificationEngine™ in the developer portal.
 
 You can view code examples in the dark area to the right.
 
@@ -34,7 +34,7 @@ curl -H "Content-Type: application/json" --data "{}" -k https://yourapikey:youra
 
 UnificationEngine™ uses API keys to allow access to the API. You can register a new UnificationEngine™ API key at our [developer portal](http://developer.unificationengine.com).
 
-UnificationEngine™ expects for the API key and Secret to be included in all API requests to the server that looks like the following:
+UnificationEngine™ expects for the API key and Secret to be included in all API requests to the server. The endpoint URL will look like this:
 
 `https://yourapikey:yourapisecret@api.unificationengine.com/`
 
@@ -51,7 +51,7 @@ You must replace <code>yourapikey:yourapisecret</code> with your personal API ke
 curl -XPOST https://apiv2.unificationengine.com/v2/user/create -u 8481eeb9c8304ce0a5e3cb58489868f4:4cc366b8be84a072d9232b7db7329c30 --data '{}'
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 
@@ -63,9 +63,8 @@ curl -XPOST https://apiv2.unificationengine.com/v2/user/create -u 8481eeb9c8304c
 
 ```
 
-This endpoint will create a user for the app, the developer has created in developer portal. This user is created for adding the connections like facebook, twitter etc.
-The user should be created with the key and secret of the app. On successful creation of a user, a uri containing the access key and the secret for the user will be returned as response, which is required for all further api calls.
-The uri will be in the format "user://access_key:secret@".
+This endpoint will create a UnificationEngine™ user for the developer's app. This user is required for adding the connections like facebook, twitter etc.
+The user should be created with the key and secret of the app. On successful creation of a user, a uri containing the access key and the secret for the user will be returned as response, which is required for all further api calls. The uri will be in the format "user://access_key:secret@".
 
 ### HTTP Request
 
@@ -94,7 +93,7 @@ Error code        |  Meaning
 1000| Internal Error 
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -148,7 +147,7 @@ Error code        |  Meaning
 414| User not found
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -181,9 +180,7 @@ This api call should be authenticated with the key and secret of the app.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
- |  | 	
+None.
 
 ### Response
 
@@ -202,7 +199,7 @@ Error code        |  Meaning
 1000| Internal Error
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -226,13 +223,13 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/add -u e9759590-54
 ```
 
 This endpoint will add a connection to the user of the app.
-A connection is an authentication for a connector.
-A connector, which has to be added in the developer portal is a bridge between the service and the app.
-A service can be anything like facebook, twitter etc.
-The uri parameter part for this api call consists of three part
-1. Connector identifier (scheme of uri)
-2. Service accesstoken
-3. Service domain name
+A connection is an authenticated instance of a connector.
+A connector, which has to be added in the developer portal, is a bridge between the service and the app.
+A service can be anything like Facebook, Twitter etc.
+The uri parameter part for this api call consists of three parts:
+* Connector identifier (scheme of uri)
+* Service access token
+* Service domain name
 The "name" parameter is used to identify the connection for the user, which is required for the further api calls using this connection.
 Once a connection is successfully added, it can be identified by using the "name" as "unified://name".
 This api call should be authenticated with the key and secret of the user.
@@ -266,7 +263,7 @@ Error code        |  Meaning
 413| Connector not found
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 ## Test connection
@@ -288,7 +285,7 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/test -u e9759590-5
 
 ```
 
-This endpoint will validate the accesstoken of the service.
+This endpoint will validate the access token of the service.
 This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
@@ -343,7 +340,7 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/info -u e9759590-5
 
 ```
 
-This endpoint will list connectors info.
+This endpoint will list information about the connectors.
 This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
@@ -373,7 +370,7 @@ Error code        |  Meaning
 411| Connection not found
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -398,7 +395,7 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/refresh -u e975959
 
 ```
 
-In some services the accesstoken has short lifespan and another api has to be call to get long lifespan accesstoken, for example facebook first gives an accesstoken with short lifespan. Once we refresh the api accesstoken we will get another accesstoken with long life.
+In some services the access token has a short lifespan and another api has to be made to get a long lifespan access token. For example, Facebook first gives an access token with a short lifespan. Once we refresh the api access token, we will get another access token with a longer life.
 This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
@@ -430,7 +427,7 @@ Error code        |  Meaning
 
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -452,7 +449,7 @@ curl -XPOST https://apiv2.unificationengine.com/v2/connection/remove -u e9759590
 
 ```
 
-This endpoint will remove the connection of a user.
+This endpoint will remove a connection of a user.
 This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
@@ -483,7 +480,7 @@ Error code        |  Meaning
 411| Connection not found
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -539,7 +536,7 @@ Error code        |  Meaning
 
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
 
 
@@ -564,8 +561,8 @@ curl -XPOST http://192.168.2.203:8001/v2/message/send  --data "{ \"message\": { 
 
 ```
 
-This endpoint will send messages to services like twitter, facebook etc.
-We can send messages to multiple services using single api call. The contentType in the 'part' parameter, should be one of the capabilities chosen for the connector.
+This endpoint will send a message to services like Twitter, Facebook etc.
+It's possible to send messages to multiple services using a single api call. The contentType in the 'part' parameter should be one of the connector capabilities, which can be seen when adding the connector to your app.
 This api call should be authenticated with the key and secret of the user.
 
 ### HTTP Request
@@ -599,5 +596,5 @@ Error code        |  Meaning
 
 
 <aside class="success">
-Remember — API requires authentication!
+Remember — the API requires authentication!
 </aside>
