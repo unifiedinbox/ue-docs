@@ -56,29 +56,32 @@ html, body {
     linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
     $nav-subitem-bg;
 }
-
+.sidebar-left {position:relative;}
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
-
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
   top: 0;
-  left: 0;
+  left: 100px;
   bottom: 0;
   width: $nav-width;
+  //width:302px;
+  //width:22.255%;
   //background-color: $nav-bg;
   background-color: $lhs-bg;
   font-size: 13px;
   font-weight: bold;
-
+  a {color:$nav-text}
+  a:hover { color: $nav-active-bg;}
   // language selector for mobile devices
   .lang-selector {
     display: none;
     a {
       padding-top: 0.5em;
-      padding-bottom: 0.5em;	
+      padding-bottom: 0.5em;
+
     }    
   }
 
@@ -91,26 +94,31 @@ html, body {
 
   &>.search {
     position: relative;
+    padding:15px;
 
     input {
       background: $search-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      //border-width: 0 0 1px 0;
+      //border-color: $search-box-border-color;
+      padding: 6px 25px 6px 6px;
       box-sizing: border-box;
-      margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      margin:0px;
+      width:100%;
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+      border:none;
+      @extend %nav-font;
     }
 
     &:before {
       position: absolute;
-      top: 17px;
-      left: $nav-padding + 4;
+      top: 22px;
+      //left: $nav-padding + 4;
+      right:22px;
       color: $nav-text;
       @extend %icon-search;
+
     }
     
   }
@@ -131,6 +139,7 @@ html, body {
     margin-top: 0;
     box-sizing: border-box;
     height: 0;
+    background: $submenu-bg;
     overflow-y: auto;
     overflow-x: hidden;
     transition-property: height, margin;
@@ -140,8 +149,8 @@ html, body {
       height: 30%;
       margin-bottom: 1em;
     }
-
-    @include embossed-bg;
+     @extend %nav-font;
+    //@include embossed-bg;
 
     li {
       margin: 1em $nav-padding;
@@ -165,6 +174,10 @@ html, body {
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    @extend %nav-font;
+    font-size: 16px;
+    font-weight:lighter;
+    text-decoration:none;
   }
 
   // The Table of Contents is composed of multiple nested
@@ -186,16 +199,18 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
-    background-color: $nav-active-bg;
-    color: $nav-active-text;
+   // box-shadow: 0px 1px 0px $nav-active-shadow;
+    //background-color: $nav-active-bg;
+    //color: $nav-active-text;
+    a {color: $nav-active-text; font-weight: bold;}
   }
 
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
     display: none; // tocify will override this when needed
-    background-color: $nav-subitem-bg;
+   // background-color: $nav-subitem-bg;
+    background:$submenu-bg;
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
@@ -203,7 +218,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+    //@include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -221,6 +236,7 @@ html, body {
 
     a:hover {
       text-decoration: underline;
+      color: $nav-active-bg;
     }
 
     li {
@@ -271,7 +287,8 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
-  margin-left: $nav-width;
+ // margin-left: $nav-width;
+  margin-left: 0px;
   position: relative;
   z-index: 10;
   background-color: $main-bg;
@@ -287,6 +304,7 @@ html, body {
   .dark-box {
     width: $examples-width;
     background-color: $examples-bg;
+    //background-color:
     position: absolute;
     right: 0;
     top: 0;
@@ -305,7 +323,9 @@ html, body {
 	
   }
    .lang-selector {
-    position: fixed;
+    //position: fixed;
+    display:none;
+    position: relative;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
 	a {
@@ -392,8 +412,8 @@ html, body {
     border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    //border-top: 1px solid #ddd;
+    //background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -571,7 +591,8 @@ html, body {
 .content {
   pre, blockquote {
     background-color: $code-bg;
-    color: #fff;
+    //color: #fff;
+    color: #9596b5;
 
     padding: 2em $main-padding;
     margin: 0;
@@ -581,9 +602,10 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    @include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+    //@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
 
     @extend %right-col;
+    border-radius: 0px;
 
     &>p { margin: 0; }
 
@@ -595,20 +617,31 @@ html, body {
   }
 
   pre {
-    @extend %code-font;
-  }
 
+    @extend %code-font;
+    @extend %code-box-shadow;
+    background-color: #fff;
+        width: 42.6789%;
+        margin-right: 29px;
+
+  }
+.highlight .err {
+      background:none;
+   }
   blockquote {
+      font-size: 16px;
     &>p {
       background-color: $code-annotation-bg;
       //border-radius: 5px;
       padding: $code-annotation-padding;
       color: #fff;
+      font-size: 16px;
       //border-top: 1px solid #000;
       //border-bottom: 1px solid #404040;
       @extend %light-font;
     }
     code {background:rgba(0,0,0,0.05);}
+
   }
   
 }
@@ -640,7 +673,7 @@ html, body {
 // These are the styles for phones and tablets
 // There are also a couple styles disperesed
 
-@media (max-width: $tablet-width) {
+@media (max-width: 930px) {
   .tocify-wrapper {
     left: -$nav-width;
 
@@ -648,7 +681,13 @@ html, body {
       left: 0;
     }
   }
-
+    .tocify-wrapper {
+        width:30%;
+        left:-30%;
+      }
+      #nav-button.open {
+        left:30%;
+      }
   .page-wrapper {
     margin-left: 0;
   }
@@ -663,9 +702,16 @@ html, body {
   }
 }
 
-@media (max-width: $phone-width) {
+@media (max-width: 680px) {
   .dark-box {
     display: none;
+  }
+  .tocify-wrapper {
+    width:50%;
+    left:-50%;
+  }
+  #nav-button.open {
+    left:50%;
   }
 
   %left-col {

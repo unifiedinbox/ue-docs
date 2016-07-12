@@ -25,38 +25,52 @@ under the License.
 ////////////////////
 $nav-bg: #393939;
 //$examples-bg: #393939;
-	$examples-bg: #525252;
+//$examples-bg: #525252;
+
 //$code-bg: #292929;
-	$code-bg: #424242;
+//$code-bg: #424242;
+$code-bg:  #f2f2f2;
 //$code-annotation-bg: #1c1c1c;
-$code-annotation-bg: #323232;
+//$code-annotation-bg: #323232;
+//$code-annotation-bg:  #a9a9a9;
+$code-annotation-bg: #bbbbbb;
 $nav-subitem-bg: #262626;
 //$nav-active-bg: #2467af;
 $nav-active-bg: #01579b;
 $lang-select-border: #000;
 //$lang-select-bg: #222;
-	$lang-select-bg: #323232;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
+	//$lang-select-bg: #323232;
+	$lang-select-bg: #bbbbbb;
+$submenu-bg:#dcdfe8;
+
+
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 //$main-bg: #eaf2f6;
 $main-bg: #fff;
 //$aside-notice-bg: #8fbcd4;
-$aside-notice-bg: #b3e5fc;
+//$aside-notice-bg: #b3e5fc;
+$aside-notice-bg: #eeeeee;
 $aside-warning-bg: #c97a7e;
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e;
-$search-bg:#323232;
-$lhs-bg:#525252;
-
-
+$search-bg:#fafafa;
+//$search-bg:#323232;
+//$lhs-bg:#525252;
+$lhs-bg:#f2f2f2;
+$examples-bg: $lhs-bg;
+$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
+$highlight-text:#eeeeee;
 // TEXT COLORS
 ////////////////////
 //$main-text: #333; // main content text color
 $main-text: #000000; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
+//$nav-text: #fff;
+$nav-text: #424242;
+$nav-active-text: #00b0ff;
+//$nav-active-text: #fff;
 $lang-select-text: #fff; // color of unselected language tab text
-$lang-select-active-text: #fff; // color of selected language tab text
+//$lang-select-active-text: #fff; // color of selected language tab text
+$lang-select-active-text:#00b0ff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
 $placeholder_color: #bdbdbd; //color for search input placeholder
 $code-color-green: #8cbe46;
@@ -65,7 +79,7 @@ $content-link-color:#00b0ff;
 
 // SIZES	
 ////////////////////
-$nav-width: 230px; // width of the navbar
+$nav-width: 22%; // width of the navbar
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
@@ -74,8 +88,9 @@ $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
-$tablet-width: 930px; // min width before reverting to tablet size
-$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
+$tablet-width: 75%; // min width before reverting to tablet size
+//$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
+$phone-width: 680px;
 
 
 // FONTS
@@ -84,11 +99,15 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 $font_helvetica: Helvetica Neue LT Pro;
 $font_helvetica_light: Helvetica Neue Ligt;
 $ocr-b-10-b: ocr-b-10-b;
+$font_open_sans : Open Sans;
 
 //URLS
 $url_helvetica: url(../fonts/HelveticaNeueLTPro-Md.otf);
 $url_helvetica_light: url(../fonts/HelveticaNeueLTPro-Lt.otf);
 $ocr-b-10-b_url: url(../fonts/ocr-b-10-bt.ttf);
+$url_opensans-bold: url(../fonts/HelveticaNeueLTPro-Md.otf);
+$url_opensans-regular: url(../fonts/HelveticaNeueLTPro-Md.otf);
+
 
 @font-face {
 	font-family: $font_helvetica;
@@ -101,6 +120,14 @@ $ocr-b-10-b_url: url(../fonts/ocr-b-10-bt.ttf);
 	font-family: $font_helvetica_light;
 	src: $url_helvetica_light;
 	src: $url_helvetica_light format('opentype');
+	font-weight: lighter;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: $font_open_sans;
+	src: $url_opensans-bold format('truetype');;
+	src: $url_opensans-regular format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -113,7 +140,7 @@ $ocr-b-10-b_url: url(../fonts/ocr-b-10-bt.ttf);
 
 %default-font {
   font-family: " Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 %header-font {
@@ -133,6 +160,9 @@ $ocr-b-10-b_url: url(../fonts/ocr-b-10-bt.ttf);
 %thick-font {
 	font-family: "ocr-b-10-b","Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 	
+}
+%nav-font {
+    font-family: "Helvetica Neue Ligt","Helvetica Neue LT Pro", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 }
 
 // OTHER
@@ -158,3 +188,4 @@ $search-box-border-color: #666;
 
         hyphens: auto;
 }
+%code-box-shadow {box-shadow:0px 0px 10px 0px #b1b1b1}
